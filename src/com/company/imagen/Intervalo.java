@@ -17,17 +17,17 @@ public class Intervalo {
         this.j2 = j2;
     }
 
-    public static void encontrarIntervalos(int a[][]){
+    public static void encontrarIntervalos(int a[][], int colorImagen, int colorFondo){
         intervalos = new LinkedList<>();
         for (int i = 0; i < a.length; i++){
             for (int j = 0; j < a[i].length; j++){
-                if (a[i][j] == 1 && !estaEnAlgunIntervalo(i,j,intervalos))
-                    encontrarIntervalo(a, i, j);
+                if (a[i][j] == colorImagen && !estaEnAlgunIntervalo(i,j,intervalos))
+                    encontrarIntervalo(a, i, j, colorFondo);
             }
         }
     }
 
-    private static void encontrarIntervalo(int a[][], int i, int j){
+    private static void encontrarIntervalo(int a[][], int i, int j, int colorFondo){
         int t1, t2;
         int s1 = i;
         int s2 = j;
@@ -35,10 +35,10 @@ public class Intervalo {
         t1 = i;
         t2 = j;
 
-        while (a[i][j] != 0){
+        while (a[i][j] != colorFondo){
             if ((i+1) == a.length)
                 break;
-            else if (a[i+1][j] == 0)
+            else if (a[i+1][j] == colorFondo)
                 break;
             else {
                 i++;
@@ -46,10 +46,10 @@ public class Intervalo {
             }
         }
 
-        while (a[i][j] != 0){
+        while (a[i][j] != colorFondo){
             if ((j+1) == a[i].length)
                 break;
-            else if (a[i][j+1] == 0)
+            else if (a[i][j+1] == colorFondo)
                 break;
             else {
                 j++;
@@ -87,20 +87,24 @@ public class Intervalo {
         }
     }
 
-    private int getI1() {
+    public int getI1() {
         return i1;
     }
 
-    private int getI2() {
+    public int getI2() {
         return i2;
     }
 
-    private int getJ1() {
+    public int getJ1() {
         return j1;
     }
 
-    private int getJ2() {
+    public int getJ2() {
         return j2;
+    }
+
+    public static List<Intervalo> getIntervalos() {
+        return intervalos;
     }
 
     @Override

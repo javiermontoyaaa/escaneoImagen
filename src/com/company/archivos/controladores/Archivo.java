@@ -1,4 +1,4 @@
-package com.company.archivos;
+package com.company.archivos.controladores;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -7,14 +7,14 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ArchivoMatriz {
+public class Archivo {
     private static List<String> renglones;
     private static final String EOF = "";
 
     private static void leerArchivo(){
         try {
             FileReader file = new FileReader(
-                    new File("src/com/company/archivos/matriz1.txt"));
+                    new File("src/com/company/archivos/matriz.txt"));
             BufferedReader reader = new BufferedReader(file);
             renglones = new LinkedList<>();
             String line = EOF;
